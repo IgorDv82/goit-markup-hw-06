@@ -486,9 +486,9 @@ body {
 }
 .footer-container {
   display: flex;
-  gap: 70px;
   align-items: baseline;
 }
+
 .footer-address {
   width: 231px;
 }
@@ -528,6 +528,9 @@ body {
   color: var(--accent-color);
 }
 
+.join-us {
+  margin-left: 70px;
+}
 .footer-title {
   margin-bottom: 20px;
 
@@ -569,15 +572,13 @@ body {
 }
 
 .subscribe {
-  display: flex;
-  flex-direction: column;
-  margin-right: 215px;
-  margin-left: auto;
+  margin-left: 93px;
 }
 .subscribe-wrap {
+  position: relative;
   display: flex;
 }
-.subscribe-label {
+.subscribe-title {
   margin-bottom: 20px;
 
   font-weight: 700;
@@ -591,19 +592,39 @@ body {
   width: 358px;
   height: 50px;
   margin-right: 12px;
+  padding: 15px 16px;
 
   color: #ffffff;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   outline: transparent;
+
+  transition-property: border-color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
 }
-.subscribe-input::placeholder {
+.subscribe-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
   font-size: 16px;
   line-height: 1.25;
   letter-spacing: 0.03em;
 
   color: rgba(255, 255, 255, 0.6);
+  transition-property: transform, color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
+}
+.subscribe-input:focus {
+  border-color: var(--accent-color);
+}
+.subscribe-input:focus + .subscribe-label {
+  transform: translate(-150%, -50%);
+  color: var(--accent-color);
 }
 .subscribe-btn {
   display: flex;
@@ -634,12 +655,18 @@ body {
 }
 
 .filter-button {
+  display: block;
   padding: 6px 22px;
+
+  font-family: inherit;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.62;
   letter-spacing: 0.03em;
   text-align: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
 
   background-color: var(--portfolio-button-background);
   color: var(--primary-title-color);
