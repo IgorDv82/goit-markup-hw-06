@@ -604,6 +604,13 @@ body {
   transition-duration: var(--time-duration);
   transition-timing-function: var(--time-function);
 }
+.subscribe-input::placeholder {
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+
+  color: rgba(255, 255, 255, 0.6);
+}
 .subscribe-label {
   position: absolute;
   left: 12px;
@@ -614,7 +621,7 @@ body {
   line-height: 1.25;
   letter-spacing: 0.03em;
 
-  color: rgba(255, 255, 255, 0.6);
+  color: transparent;
   transition-property: transform, color;
   transition-duration: var(--time-duration);
   transition-timing-function: var(--time-function);
@@ -622,7 +629,7 @@ body {
 .subscribe-input:focus {
   border-color: var(--accent-color);
 }
-.subscribe-input:focus + .subscribe-label {
+.subscribe-input:not(:placeholder-shown) + .subscribe-label {
   transform: translate(-150%, -50%);
   color: var(--accent-color);
 }
@@ -783,7 +790,7 @@ body {
 .modal {
   position: absolute;
   width: 528px;
-  min-height: 581px;
+  height: 581px;
   padding: 40px;
   top: 50%;
   left: 50%;
