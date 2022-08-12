@@ -11,8 +11,10 @@
 
   --hero-title-color: #ffffff;
   --hero-background-color: #c4c4c4;
-  --hero-button-accent: #188ce8;
   --hero-overlay-color: rgba(47, 48, 58, 0.4);
+
+  --button-accent: #188ce8;
+  --button-color: #ffffff;
 
   --section-team-background: #f5f4fa;
   --team-person-background: #ffffff;
@@ -99,9 +101,22 @@ body {
 }
 
 .btn {
+  display: block;
+  min-width: 200px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 0;
+
   font-family: inherit;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  letter-spacing: 0.06em;
   text-align: center;
   cursor: pointer;
+  background-color: var(--accent-color);
+  color: var(--button-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border: none;
   border-radius: 4px;
 }
@@ -258,29 +273,14 @@ body {
 }
 
 .hero-btn {
-  display: block;
-  min-width: 200px;
-  height: 50px;
-  margin: 0 auto;
-  padding: 0;
-
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1.88;
-  letter-spacing: 0.06em;
-
-  background-color: var(--accent-color);
-  color: var(--hero-title-color);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-
-  transition: background-color;
+  transition-property: background-color;
   transition-duration: var(--time-duration);
   transition-timing-function: var(--time-function);
 }
 
 .hero-btn:hover,
 .hero-btn:focus {
-  background-color: var(--hero-button-accent);
+  background-color: var(--button-accent);
 }
 /* -------------------END----------------------- */
 
@@ -465,7 +465,7 @@ body {
   border: 1px solid var(--client-icon-color);
   border-radius: 4px;
 
-  transition: color, border-color;
+  transition-property: color, border-color;
   transition-duration: var(--time-duration);
   transition-timing-function: var(--time-function);
 }
@@ -590,7 +590,7 @@ body {
   background-color: var(--portfolio-button-background);
   color: var(--primary-title-color);
 
-  transition: background-color, color, box-shadow;
+  transition-property: background-color, color, box-shadow;
   transition-duration: var(--time-duration);
   transition-timing-function: var(--time-function);
 }
@@ -732,6 +732,9 @@ body {
   color: #000000;
   background-color: transparent;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  transition-property: color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
 }
 .close-btn-icon {
   fill: currentColor;
@@ -748,41 +751,146 @@ body {
 
 .modal-title {
   width: 100%;
+  margin-bottom: 12px;
+  text-align: center;
+
   font-weight: 700;
   font-size: 20px;
   line-height: 1.15;
-  text-align: center;
 }
-.modal-name-text {
+.modal-form-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.modal-label {
   margin-bottom: 4px;
 
   font-size: 12px;
   line-height: 1.17;
   letter-spacing: 0.01em;
 }
+.input-wrap {
+  position: relative;
+}
 .modal-input {
   width: 100%;
   height: 40px;
-  padding: 11px 12px;
-  margin-bottom: 10px;
-  border: 1px solid rgba(33, 33, 33, 0.2);
-  border-radius: 4px;
-}
-/* .modal-input: {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-} */
-.modal-comment {
-  width: 100%;
-  padding: 12px 16px;
+  padding-left: 42px;
+
+  letter-spacing: 0.03em;
+  color: var(--primary-color-text);
 
   border: 1px solid rgba(33, 33, 33, 0.2);
-border-radius: 4px;
+  border-radius: 4px;
+  outline: transparent;
+  transition-property: border-color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
+}
+.modal-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  fill: var(--primary-title-color);
+  transition-property: fill;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
+}
+.modal-input:focus {
+  border-color: var(--accent-color);
+}
+.modal-input:focus + .modal-icon {
+  fill: var(--accent-color);
+}
+
+.modal-form-textarea {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.modal-comment {
+  width: 100%;
+  height: 120px;
+  padding: 12px 16px;
+
+  letter-spacing: 0.03em;
+  color: var(--primary-color-text);
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+  resize: none;
+  outline: transparent;
+
+  transition-property: border-color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
 }
 .modal-comment::placeholder {
   font-size: 12px;
-line-height: 1.17;
-letter-spacing: 0.01em;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
 
-color: rgba(117, 117, 117, 0.5);
+  color: rgba(117, 117, 117, 0.5);
+}
+
+.modal-comment:focus {
+  border-color: var(--accent-color);
+}
+
+.modal-form-checkbox {
+  margin-bottom: 30px;
+}
+.modal-agreement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  line-height: 1.71;
+}
+.agreement-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 15px;
+  margin-right: 7px;
+  border: 2px solid #212121;
+  border-radius: 2px;
+  fill: transparent;
+
+  transition-property: background-color, border-color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
+}
+.modal-check {
+  transition-property: fill;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
+}
+.modal-checkbox:checked + .modal-agreement .agreement-check {
+  border: none;
+  background-color: var(--accent-color);
+}
+.modal-checkbox:focus + .modal-agreement .agreement-check {
+  border-color: var(--accent-color);
+}
+.modal-checkbox:checked + .modal-agreement .modal-check {
+  fill: #ffffff;
+}
+.agreement-link {
+  color: var(--accent-color);
+}
+
+.modal-btn {
+  transition-property: background-color;
+  transition-duration: var(--time-duration);
+  transition-timing-function: var(--time-function);
+}
+.modal-btn:hover,
+.modal-btn:focus {
+  background-color: var(--button-accent);
 }
